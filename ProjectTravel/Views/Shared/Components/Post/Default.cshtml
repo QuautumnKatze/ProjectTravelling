@@ -1,4 +1,6 @@
-﻿@model IList<Post>
+﻿@using ProjectTravel.Models;
+@using ProjectTravel.Utilities;
+@model IList<Post>
 
 
 <style>
@@ -34,19 +36,20 @@
 		<div class="row align-items-stretch">
 			@foreach (var item in Model)
 			{
+				string url = Functions.TitleSlugGeneration("post", item.Title, item.PostID);
 				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
 					<div class="media-entry">
-						<a class="blog-img position-relative overflow-hidden" href="@item.Link">
+						<a class="blog-img position-relative overflow-hidden" href="/@url">
 							<img src="@item.Images" alt="Image" class="img-fluid">
 						</a>
 						<div class="bg-white m-body">
 							<span class="date">@item.CreatedDate</span>
 							<h3 class="title">
-								<a href="@item.Link">@item.Title</a>
+								<a href="/@url">@item.Title</a>
 							</h3>
 							<p class="short-desc">@item.Abstract</p>
 
-							<a href="@item.Link" class="more d-flex align-items-center float-start">
+							<a href="/@url" class="more d-flex align-items-center float-start">
 								<span class="label">Đọc thêm</span>
 								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
 							</a>
