@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectTravel.Models;
-//using Travel.Areas.Admin.Models;
+using ProjectTravel.Areas.Admin.Models;
 
 namespace ProjectTravel.Models
 {
@@ -12,6 +11,9 @@ namespace ProjectTravel.Models
 
         public DbSet<Menu> Menus { get; set; }
 
-        //public DbSet<AdminMenu> AdminMenus { get; set; }
-    }
+        public DbSet<Post> Posts { get; set; }
+
+		public DbSet<AdminMenu> AdminMenus { get; set; }
+
+	}
 }

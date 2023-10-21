@@ -35,6 +35,11 @@
 </head>
 <body>
 
+	<div class="bg-black px-5"> 
+		<a href="https://localhost:7036/Admin/Home/Index" class="text reset">Admin</a>
+	</div>
+	
+
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
 			<div class="site-mobile-menu-close">
@@ -123,6 +128,7 @@
 
 	</div>
 
+	@await Component.InvokeAsync("Post")
 
 	@RenderBody()
 

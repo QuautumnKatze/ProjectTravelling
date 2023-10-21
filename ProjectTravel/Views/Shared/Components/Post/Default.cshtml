@@ -1,0 +1,60 @@
+﻿@model IList<Post>
+
+
+<style>
+	.title {
+		display: block;
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* số dòng hiển thị */
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.short-desc {
+		display: block;
+		display: -webkit-box;
+		-webkit-line-clamp: 3; /* số dòng hiển thị */
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+</style>
+
+<div class="section">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12" data-aos="fade-up" data-aos-delay="0">
+
+				<h2 class="heading mb-5">Bài đăng gần đây</h2>
+			</div>
+		</div>
+
+		<div class="row align-items-stretch">
+			@foreach (var item in Model)
+			{
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+					<div class="media-entry">
+						<a class="blog-img position-relative overflow-hidden" href="@item.Link">
+							<img src="@item.Images" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<span class="date">@item.CreatedDate</span>
+							<h3 class="title">
+								<a href="@item.Link">@item.Title</a>
+							</h3>
+							<p class="short-desc">@item.Abstract</p>
+
+							<a href="@item.Link" class="more d-flex align-items-center float-start">
+								<span class="label">Đọc thêm</span>
+								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			}
+
+		</div>
+	</div>
+</div>
