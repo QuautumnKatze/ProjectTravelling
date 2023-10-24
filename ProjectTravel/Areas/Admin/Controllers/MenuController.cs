@@ -7,7 +7,7 @@ namespace ProjectTravel.Areas.Admin.Controllers
     [Area("Admin")]
     public class MenuController : Controller
     {
-        public readonly DataContext _context;
+        private readonly DataContext _context;
         public MenuController(DataContext context)
         {
             _context = context;

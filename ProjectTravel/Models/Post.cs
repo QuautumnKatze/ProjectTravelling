@@ -18,7 +18,7 @@ namespace ProjectTravel.Models
         public DateTime CreatedDate { get; set; }
         public bool? IsActive { get; set; }
         public int PostOrder { get; set; }
-        public int MenuId { get; set; }
+        public int MenuID { get; set; }
         public int Category { get; set; }
         public int Status { get; set; }
 
