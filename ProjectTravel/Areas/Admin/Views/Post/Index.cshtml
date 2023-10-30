@@ -12,32 +12,30 @@
 		</a>
 	</p>
 
-	<section class="section dashboard">
+	<section class="section">
 		<div class="row">
-			<div class="col-12">
-				<div class="card recent-sales overflow-auto">
+			<div class="col-lg-12">
+				<div class="card overflow-auto">
 					<div class="card-body mt-4">
-						<table class="table table-borderless datatable">
+						<table class="table datatable">
 							<thead>
 								<tr>
 									<th class="col-1 text-center">#</th>
 									<th class="col-3 text-center">Tiêu đề</th>
 									<th class="col-2 text-center">Tác giả</th>
 									<th class="col-2 text-center">Ngày đăng</th>
-									<th class="col-1 text-center">Ẩn/Hiện</th>
+									<th class="col-2 text-center">Hiện</th>
 									<th class="col-2 text-center">Chức năng</th>
-
 								</tr>
 							</thead>
 							<tbody>
 								@foreach (var item in Model)
 								{
 									<tr>
-										<th class="text-center" scope="row">@item.PostID</th>
-										@* <td>
+										<th scope="row" class="text-center">
 											<a asp-area="Admin" asp-controller="Post" asp-action="Details"
-											   asp-route-id="@item.PostID" class="text-primay">@item.PostID</a>
-										</td> *@
+											   asp-route-id="@item.PostID">@item.PostID</a>
+										</th>
 										<td class="text-center">@item.Title</td>
 										<td class="text-center">@item.Author</td>
 										<td class="text-center">@item.CreatedDate</td>

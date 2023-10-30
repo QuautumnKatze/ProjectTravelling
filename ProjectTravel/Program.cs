@@ -43,3 +43,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+///scaffold - DbContext "data source=LAPTOP-MNHTN2HS\SQLEXPRESS;initial catalog=TravelDB;integrated security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Models
+///scaffold - DbContext "data source=LAPTOP-MNHTN2HS\SQLEXPRESS;initial catalog=TravelDB;integrated security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Models -force

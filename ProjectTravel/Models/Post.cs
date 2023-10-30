@@ -19,7 +19,7 @@ namespace ProjectTravel.Models
         public bool? IsActive { get; set; }
         public int PostOrder { get; set; }
         public int MenuID { get; set; }
-        public int Category { get; set; }
+        public int CategoryID { get; set; }
         public int Status { get; set; }
 
     }

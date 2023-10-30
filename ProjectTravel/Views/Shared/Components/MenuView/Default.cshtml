@@ -1,4 +1,5 @@
-﻿@model IList<Menu>
+﻿@using ProjectTravel.Utilities;
+@model IList<Menu>
 
 <nav class="site-nav mt-3">
 	<div class="container">
@@ -13,13 +14,18 @@
 						@foreach (var menu in Model.Where(m => m.Levels == 1).OrderBy(n => n.MenuOrder))
 						{
 							var Pid = menu.MenuID;
+							string url = Functions.TitleSlugGeneration("list", menu.MenuName, menu.MenuID);
+							if( !string.IsNullOrEmpty(menu.Link))
+							{
+								url = menu.Link;
+							}
 
 							var Smenu = Model.Where(p => p.ParentID == Pid).OrderBy(p => p.MenuOrder).ToList();
 
 							@if (Smenu.Count == 0)
 							{
 								<li>
-									<a href="@menu.Link">@menu.MenuName</a>
+									<a href="/@url">@menu.MenuName</a>
 								</li>
 							}
 							else
@@ -27,12 +33,17 @@
 
 								
 									<li class="has-children">
-										<a href="@menu.Link">@menu.MenuName</a>
+										<a href="/@url">@menu.MenuName</a>
 										<ul class="dropdown">
 											@foreach (var smn in Smenu)
 											{
+											string url1 = Functions.TitleSlugGeneration("list", smn.MenuName, smn.MenuID);
+											if (!string.IsNullOrEmpty(smn.Link))
+											{
+												url1 = smn.Link;
+											}
 											<li>
-												<a href="@smn.Link">@smn.MenuName</a>
+												<a href="/@url1">@smn.MenuName</a>
 											</li>
 											}
 

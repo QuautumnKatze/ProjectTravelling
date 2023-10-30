@@ -1,0 +1,55 @@
+﻿@model ProjectTravel.Models.Category;
+@{
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h2>Xác nhận sửa Dịch vụ</h2>
+	</div>
+
+	<div class="container shadow p-5">
+		<div class="row pb-2">
+			<h2>Sửa Dịch vụ</h2>
+		</div>
+
+		<form method="post" asp-action="Edit">
+			<div asp-validation-summary="All"></div>
+
+			<div class="form-row">
+				<input type="text" class="form-control mb-3" asp-for="CategoryID" type="hidden" />
+
+				<div class="form-group col-md-6">
+					<label asp-for="CategoryName">Tên Dịch vụ</label>
+					<input type="text" class="form-control mb-3" asp-for="CategoryName" placeholder="Nhập tên Dịch vụ" />
+					<span asp-validation-for="CategoryName" class="alert-danger"></span>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label asp-for="Introduce">Giới thiệu</label>
+					<input type="text" class="form-control mb-3" asp-for="Introduce" placeholder="Nhập giới thiệu Dịch vụ" />
+					<span asp-validation-for="Introduce" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-6">
+					<label asp-for="Link">Liên kết</label>
+					<input type="text" class="form-control mb-3" asp-for="Link" placeholder="Nhập liên kết" />
+					<span asp-validation-for="Link" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-6">
+					<label asp-for="Icon">Icon</label>
+					<input type="text" class="form-control mb-3" asp-for="Icon" placeholder="Nhập đường dẫn" />
+					<span asp-validation-for="Icon" class="alert-danger"></span>
+				</div>
+				<div class="form-group mt-3 mb-5">
+					<label>
+						@Html.CheckBox("IsActive", Model.IsActive)
+						Hiển thị
+					</label>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Lưu</button>
+			<a asp-controller="Category" asp-action="Index" class="btn btn-lg btn-warning p-2">Quay lại</a>
+		</form>
+	</div>
+</main>
