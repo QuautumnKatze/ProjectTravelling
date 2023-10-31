@@ -76,13 +76,13 @@ namespace ProjectTravel.Areas.Admin.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public IActionResult Edit(int? id)
+		public IActionResult Edit(long? id)
 		{
 			if (id == null || id == 0)
 			{
 				return NotFound();
 			}
-			var mn = _context.Menus.Find(id);
+			var mn = _context.Posts.Find(id);
 			if (mn == null)
 			{
 				return NotFound();
@@ -104,11 +104,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 
-		public IActionResult Edit(Menu mn)
+		public IActionResult Edit(Post mn)
 		{
 			if (ModelState.IsValid)
 			{
-				_context.Menus.Update(mn);
+				_context.Posts.Update(mn);
 				_context.SaveChanges();
 				return RedirectToAction("Index");
 			}
