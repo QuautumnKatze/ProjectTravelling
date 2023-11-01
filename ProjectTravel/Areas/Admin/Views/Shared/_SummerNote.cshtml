@@ -117,7 +117,7 @@
             destroyOnClose: true,
             closeOnEditorCallback: true,
             getFileCallback: function (files) {
-                document.getElementById('file_input').ariaValueMax = files.url;
+                document.getElementById('file_input').value = files.url;
             },
             commandsOptions: {
                 getfile: {

@@ -1,4 +1,4 @@
-﻿namespace ProjectTravel.Utilities
+﻿namespace ProjectTravel.Ultilities
 {
 	public class Functions
 	{
