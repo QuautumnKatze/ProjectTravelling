@@ -19,5 +19,7 @@ namespace ProjectTravel.Models
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<view_Featured_Post> FeaturedPosts { get; set; }
+
 	}
 }

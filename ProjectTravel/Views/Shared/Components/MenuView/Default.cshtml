@@ -37,14 +37,14 @@
 										<ul class="dropdown">
 											@foreach (var smn in Smenu)
 											{
-											string url1 = Functions.TitleSlugGeneration("list", smn.MenuName, smn.MenuID);
-											if (!string.IsNullOrEmpty(smn.Link))
-											{
-												url1 = smn.Link;
-											}
-											<li>
-												<a href="/@url1">@smn.MenuName</a>
-											</li>
+												string url1 = Functions.TitleSlugGeneration("list", smn.MenuName, smn.MenuID);
+												if (!string.IsNullOrEmpty(smn.Link))
+												{
+													url1 = smn.Link;
+												}
+												<li>
+													<a href="/@url1">@smn.MenuName</a>
+												</li>
 											}
 
 										</ul>
