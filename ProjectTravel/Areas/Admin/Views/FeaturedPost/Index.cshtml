@@ -1,15 +1,16 @@
 ﻿@using ProjectTravel.Models;
-@model IList<Post>
+@model IList<view_Featured_Post>
+
 
 <div class="wrapper">
     <main id="main" class="main">
         <div class="pagetitle">
-            <h2>Danh sách bài viết</h2>
+            <h2>Bài đăng nổi bật</h2>
         </div>
 
         <p>
-            <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Post" asp-action="Create">
-                <i class="bi bi-file-earmark-text me-1"></i> Thêm bài viết
+            <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="FeaturedPost" asp-action="Create">
+                <i class="bi bi-file-earmark-text me-1"></i> Thêm menu
             </a>
         </p>
 
@@ -31,7 +32,6 @@
                                             <th>Tiêu đề</th>
                                             <td>Tác giả</td>
                                             <td>Ngày đăng</td>
-                                            <td>Ẩn/Hiện</td>
                                             <th>Chức năng</th>
                                         </tr>
                                     </thead>
@@ -39,18 +39,17 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                <th>@item.PostID</th>
+                                                <th>@item.FeaturedPostID</th>
                                                 <td>@item.Title</td>
                                                 <td>@item.Author</td>
                                                 <td>@item.CreatedDate</td>
-                                                <td>@item.IsActive</td>
                                                 <td>
-                                                    <a asp-area="Admin" asp-controller="Post" asp-action="Edit"
-                                                       asp-route-id="@item.PostID" class="btn btn-primary btn-sm"
-                                                       title="Sửa nội dung bài viết"><i class="bi bi-pencil"></i></a>
+                                                    <a asp-area="Admin" asp-controller="FeaturedPost" asp-action="Edit"
+                                                       asp-route-id="@item.MenuID" class="btn btn-primary btn-sm"
+                                                       title="Sửa nội dung bài viết"><i class="bi bi-pen"></i></a>
 
-                                                    <a asp-area="Admin" asp-controller="Post" asp-action="Delete"
-                                                       asp-route-id="@item.PostID" class="btn btn-danger btn-sm"
+                                                    <a asp-area="Admin" asp-controller="FeaturedPost" asp-action="Delete"
+                                                       asp-route-id="@item.MenuID" class="btn btn-danger btn-sm"
                                                        title="Xóa thông tin bài viết"><i class="bi bi-trash"></i></a>
                                                 </td>
                                             </tr>

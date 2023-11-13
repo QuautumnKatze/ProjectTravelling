@@ -96,7 +96,7 @@ namespace ProjectTravel.Areas.Admin.Controllers
             mnList.Insert(0, new SelectListItem()
             {
                 Text = "----Select----",
-                Value = string.Empty
+                Value = "0"
             });
             ViewBag.mnList = mnList;
             return View(mn);
