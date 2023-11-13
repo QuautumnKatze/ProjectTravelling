@@ -23,5 +23,8 @@ namespace ProjectTravel.Models
 
         public DbSet<Testimonial> Testimonials { get; set; }
 
-	}
+        public DbSet<Featured_Post> DBFeaturedPosts { get; set; }
+
+
+    }
 }

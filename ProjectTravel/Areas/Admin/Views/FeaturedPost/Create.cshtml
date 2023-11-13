@@ -1,0 +1,38 @@
+﻿@using ProjectTravel.Ultilities;
+@model ProjectTravel.Models.Featured_Post
+@{
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h2>Thêm mới bài viết</h2>
+	</div>
+	<!-- Begin Form -->
+	<form asp-action="Create" method="post">
+		<div class="form-row">
+
+			<div class="form-group col-md-6">
+				<label asp-for="PostID">Chọn bài viết</label>
+				<select asp-for="PostID"
+						class="form control"
+						asp-items="@(new SelectList(ViewBag.postList, "Value", "Text"))">
+				</select>
+				<span asp-validation-for="PostID" class="alert-danger"></span>
+			</div>
+
+		</div>
+		<div class="my-3">
+			<a class="btn btn-app bg-warning p-2 mr-5" href="javascript:history.back()">
+				<i class="bi bi-arrow-left"></i> Quay lại
+			</a>
+			<button type="submit" class="btn btn-app bg-info p-2">
+				<i class="bi bi-save"></i> Lưu
+			</button>
+		</div>
+		
+	</form>
+</main>
+
+
+

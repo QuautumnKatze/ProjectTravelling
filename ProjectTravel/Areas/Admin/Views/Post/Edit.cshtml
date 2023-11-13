@@ -9,9 +9,9 @@
 		<h2>Sửa bài viết</h2>
 	</div>
 	<!-- Begin Form -->
-	<form asp-action="Create" method="post">
+	<form asp-action="Edit" method="post">
 		<div class="form-row">
-
+			<input type="text" class="form-control mb-3" asp-for="PostID" disabled />
 			<div class="form-group col-md-6">
 				<label asp-for="MenuID">Chọn mục</label>
 				<select asp-for="MenuID"

@@ -28,6 +28,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Hình ảnh</th>
                                             <th>Tiêu đề</th>
                                             <td>Tác giả</td>
                                             <td>Ngày đăng</td>
@@ -40,6 +41,9 @@
                                         {
                                             <tr>
                                                 <th>@item.PostID</th>
+                                                <td>
+                                                    <img src="@item.Images" width="80px">
+                                                </td>
                                                 <td>@item.Title</td>
                                                 <td>@item.Author</td>
                                                 <td>@item.CreatedDate</td>
