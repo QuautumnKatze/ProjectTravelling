@@ -1,0 +1,48 @@
+﻿@using ProjectTravel.Models;
+@using ProjectTravel.Ultilities;
+@model IList<Testimonial>
+
+<div class="section bg-light">
+
+
+
+
+	<h2 class="heading mb-5 text-center">Nhận Xét Của Khách Hàng</h2>
+
+	<div class="text-center mb-5">
+		<div id="prevnext-testimonial">
+			<span class="prev me-3" data-controls="prev">
+				<span class="icon-chevron-left"></span>
+
+			</span>
+			<span class="next" data-controls="next">
+				<span class="icon-chevron-right"></span>
+
+			</span>
+		</div>
+	</div>
+
+	<div class="wide-slider-testimonial-wrap">
+		<div class="wide-slider-testimonial">
+			@foreach (var item in Model)
+			{
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="@item.Images" alt="Free template by TemplateUX">
+							<h3>@item.FullName</h3>
+							<p class="position mb-5">@item.Description</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+							&ldquo;@item.Contents&rdquo;
+						</p>
+					</blockquote>
+				</div>
+			}
+		</div>
+	</div>
+
+
+
+</div> <!-- /.untree_co-section -->
