@@ -1,0 +1,74 @@
+﻿@using ProjectTravel.Models;
+@model IList<Testimonial>
+
+
+<div class="wrapper">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h2>Danh sách đánh giá</h2>
+        </div>
+
+        <p>
+            <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Testimonial" asp-action="Create">
+                <i class="bi bi-file-earmark-text me-1"></i> Thêm đánh giá
+            </a>
+        </p>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Thông tin Đánh giá</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Họ tên </th>
+                                            <td>Miêu tả</td>
+                                            <td>Nội dung</td>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th>@item.TestimonialID</th>
+                                                <td>@item.FullName</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.Contents</td>
+                                                <td>
+                                                    <a asp-area="Admin" asp-controller="Testimonial" asp-action="Edit"
+                                                       asp-route-id="@item.TestimonialID" class="btn btn-primary btn-sm"
+                                                       title="Sửa nội dung đánh giá"><i class="bi bi-pen"></i></a>
+
+                                                    <a asp-area="Admin" asp-controller="Testimonial" asp-action="Delete"
+                                                       asp-route-id="@item.TestimonialID" class="btn btn-danger btn-sm"
+                                                       title="Xóa thông tin đánh giá"><i class="bi bi-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+
+    </main>
+</div>
