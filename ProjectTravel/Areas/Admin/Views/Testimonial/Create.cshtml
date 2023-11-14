@@ -1,4 +1,5 @@
-﻿@model ProjectTravel.Models.Testimonial
+﻿@using ProjectTravel.Ultilities;
+@model ProjectTravel.Models.Testimonial
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -43,5 +44,10 @@
         </form>
     </div>
 </main>
+
+@{
+    var summerNote = new ProjectTravel.Areas.Admin.Models.SummerNote("#");
+    <partial name="_SummerNote" model="summerNote" />
+}
 
 
