@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectTravel.Models;
+using ProjectTravel.Ultilities;
 
 namespace ProjectTravel.Areas.Admin.Controllers
 {
@@ -14,12 +15,20 @@ namespace ProjectTravel.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
             var TestimonialList = _context.Testimonials.OrderBy(c => c.TestimonialID).ToList();
             return View(TestimonialList);
         }
 
         public IActionResult Delete(int? id)
         {
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -36,6 +45,10 @@ namespace ProjectTravel.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
             var deleTest = _context.Testimonials.Find(id);
             if (deleTest == null)
             {
@@ -48,7 +61,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Create()
 		{
-			var mnList = (from m in _context.Testimonials
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            var mnList = (from m in _context.Testimonials
 						  select new SelectListItem()
 						  {
 							  Text = m.FullName,
@@ -61,7 +78,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Create(Testimonial test)
 		{
-			if (ModelState.IsValid)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (ModelState.IsValid)
 			{
 				_context.Add(test);
 				_context.SaveChanges();
@@ -70,6 +91,10 @@ namespace ProjectTravel.Areas.Admin.Controllers
 		}
 		public IActionResult Edit(int? id)
         {
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -86,6 +111,10 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
         public IActionResult Edit(Testimonial ttml)
         {
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
             if (ModelState.IsValid)
             {
                 _context.Testimonials.Update(ttml);

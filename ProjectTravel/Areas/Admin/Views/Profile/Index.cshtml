@@ -1,0 +1,102 @@
+﻿@using ProjectTravel.Ultilities;
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Thông tin tài khoản</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a style="text-decoration:none" href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item">Tài khoản</li>
+                <li class="breadcrumb-item active">Thông tin tài khoản</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <img src="@Functions._Avatar" alt="Profile" class="rounded-circle">
+                        <h2>@Functions._UserName</h2>
+                        <h3>@Functions._FullName</h3>
+                        <div class="social-links mt-2">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab">Thông tin</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <a style="text-decoration:none" asp-area="Admin" asp-controller="Profile" asp-action="EditProfile"><button class="nav-link" data-bs-toggle="tab">Cập nhật</button></a>
+                            </li>
+
+                            @* <li class="nav-item">
+                                <a style="text-decoration:none" asp-area="Admin" asp-controller="Profile" asp-action="EditAccount"><button class="nav-link" data-bs-toggle="tab">Cài đặt</button></a>
+                            </li>
+ *@
+                            <li class="nav-item">
+                                <a style="text-decoration:none" asp-area="Admin" asp-controller="Profile" asp-action="EditPassword"><button class="nav-link" data-bs-toggle="tab">Đổi mật khẩu</button></a>
+                            </li>
+
+                        </ul>
+                        <!-- Bordered Tabs -->
+                        <div class="tab-content pt-2">
+                            <div class="tab-pane fade show active profile-overview">
+                                <h5 class="card-title">Thông tin</h5>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label ">Tên đầy đủ</div>
+                                    <div class="col-lg-9 col-md-8">@Functions._FullName</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                    <div class="col-lg-9 col-md-8">@Functions._Email</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Số điện thoại</div>
+                                    <div class="col-lg-9 col-md-8">@Functions._Phone</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Địa chỉ</div>
+                                    <div class="col-lg-9 col-md-8">@Functions._Address</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Ngày sinh</div>
+                                    <div class="col-lg-9 col-md-8">@Functions._Birthday.ToString("dd/MM/yyyy")</div>
+                                </div>
+                            </div>
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+@{
+    var summerNote = new ProjectTravel.Areas.Admin.Models.SummerNote("#");
+    <partial name="_SummerNote" model="summerNote" />
+}

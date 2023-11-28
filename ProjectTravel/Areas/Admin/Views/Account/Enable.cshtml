@@ -1,0 +1,65 @@
+﻿@model ProjectTravel.Areas.Admin.Models.Account;
+@using ProjectTravel.Ultilities;
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Mở khóa tài khoản</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item">Quản lý tài khoản</li>
+                <li class="breadcrumb-item active">Mở khóa tài khoản</li>
+            </ol>
+        </nav>
+    </div>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body m-5">
+                        <h5 class="card-title" style="font-size:20px">Xác nhận mở khóa tài khoản ?</h5>
+                        <!-- General Form Elements -->
+                        <form method="post" asp-action="Enable">
+                            <div asp-validation-summary="All"></div>
+                            <div class="row mb-3">
+                                <input class=" form-control mb-3" asp-for="AccountID" type="hidden" />
+                                <input class=" form-control mb-3" asp-for="Avatar" type="hidden" />
+                                <input class=" form-control mb-3" asp-for="Password" type="hidden" />
+                                <input class=" form-control mb-3" asp-for="Phone" type="hidden" />
+                                <input class=" form-control mb-3" asp-for="RoleID" type="hidden" />
+                                <input class=" form-control mb-3" asp-for="Address" type="hidden" />
+                                <input class=" form-control mb-3" asp-for="Birthday" type="hidden" />
+                                <input type="hidden" asp-for="IsActive" value="True" />
+                                <label class="col-md-4 col-lg-2 col-form-label">Tên đầy đủ</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" asp-for="FullName" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Tên tài khoản</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" asp-for="UserName" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Email</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" asp-for="Email" readonly>
+                                </div>
+                            </div>
+                            <div class="text-center">
+								<a asp-controller="Account" asp-action="ListDisabled" class="text-white btn btn-app bg-warning p-2 ms-5"><i class="bi bi-arrow-left-circle"></i> Quay lại</a>
+								<button type="submit" class="btn btn-success p-2">
+									<i class="bi bi-unlock"></i> Mở khóa
+								</button>
+                            </div>
+                            
+                        </form><!-- End General Form Elements -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

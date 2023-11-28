@@ -1,10 +1,17 @@
-﻿@using ProjectTravel.Models;
-@model IList<Post>
+﻿@using ProjectTravel.Areas.Admin.Models;
+@model IList<Account>
 
 <div class="wrapper">
     <main id="main" class="main">
         <div class="pagetitle">
             <h2>Danh sách bài viết</h2>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Quản lý tài khoản</li>
+                    <li class="breadcrumb-item active">Danh sách tài khoản</li>
+                </ol>
+            </nav>
         </div>
 
         <section class="content">
@@ -14,7 +21,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Thông tin Menu</h3>
+                                <h3 class="card-title">Thông tin tài khoản</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -22,11 +29,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Hình ảnh</th>
-                                            <th>Tiêu đề</th>
-                                            <td>Tác giả</td>
-                                            <td>Ngày đăng</td>
-                                            <td>Nổi Bật</td>
+                                            <th>Tên tài khoản</th>
+                                            <th>Tên đầy đủ</th>
+                                            <td>Email</td>
+                                            <td>Trạng thái</td>
                                             <th>Chức năng</th>
                                         </tr>
                                     </thead>
@@ -34,20 +40,15 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                <th>@item.PostID</th>
+                                                <th>@item.AccountID</th>
+                                                <td>@item.UserName</td>
+                                                <td>@item.FullName</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.IsActive</td>
                                                 <td>
-                                                    <img src="@item.Images" width="80px">
-                                                </td>
-                                                <td>@item.Title</td>
-                                                <td>@item.Author</td>
-                                                <td>@item.CreatedDate</td>
-                                                <td>@item.IsFeatured</td>
-                                                <td>
-                                                    <a asp-area="Admin" asp-controller="FeaturedPost" asp-action="Edit"
-                                                       asp-route-id="@item.PostID" class="btn btn-primary btn-sm"
-                                                       title="Sửa nội bật"><i class="bi bi-eye"></i></a>
-
-                                                    
+                                                    <a asp-area="Admin" asp-controller="Account" asp-action="Detail"
+                                                       asp-route-id="@item.AccountID" class="text-white btn btn-app bg-primary btn-sm"
+                                                       title="Chi tiết tài khoản"><i class="bi bi-eye-fill"></i></a>
                                                 </td>
                                             </tr>
                                         }

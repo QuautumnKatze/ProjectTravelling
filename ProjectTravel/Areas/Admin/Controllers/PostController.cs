@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectTravel.Models;
+using ProjectTravel.Ultilities;
 
 namespace ProjectTravel.Areas.Admin.Controllers
 {
@@ -16,13 +17,21 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Index()
 		{
-			var listofPost = _context.Posts.OrderBy(m => m.PostID).ToList();
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            var listofPost = _context.Posts.OrderBy(m => m.PostID).ToList();
 			return View(listofPost);
 		}
 
 		public IActionResult Delete(long? id)
 		{
-			if (id == null || id == 0)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (id == null || id == 0)
 			{
 				return NotFound();
 			}
@@ -38,7 +47,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult Delete(long id)
 		{
-			var delePost = _context.Posts.Find(id);
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            var delePost = _context.Posts.Find(id);
 			if (delePost == null)
 			{
 				return NotFound();
@@ -50,7 +63,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Create()
 		{
-			var mnList = (from m in _context.Menus
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            var mnList = (from m in _context.Menus
 						  select new SelectListItem()
 						  {
 							  Text = m.MenuName,
@@ -68,17 +85,27 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Create(Post post)
 		{
-			if (ModelState.IsValid)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (ModelState.IsValid)
 			{
-				_context.Add(post);
+				_context.Posts.Add(post);
 				_context.SaveChanges();
+				return RedirectToAction("Index");
 			}
-			return RedirectToAction("Index");
+			return View(post);
+			
 		}
 
 		public IActionResult Edit(long? id)
 		{
-			if (id == null || id == 0)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (id == null || id == 0)
 			{
 				return NotFound();
 			}
@@ -106,7 +133,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Edit(Post mn)
 		{
-			if (ModelState.IsValid)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (ModelState.IsValid)
 			{
 				_context.Posts.Update(mn);
 				_context.SaveChanges();

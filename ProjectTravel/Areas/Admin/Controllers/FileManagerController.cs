@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectTravel.Ultilities;
 
 namespace ProjectTravel.Areas.Admin.Controllers
 {
@@ -8,7 +9,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            return View();
 		}
 	}
 }

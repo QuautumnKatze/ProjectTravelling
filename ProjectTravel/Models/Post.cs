@@ -21,6 +21,7 @@ namespace ProjectTravel.Models
         public int MenuID { get; set; }
         public int CategoryID { get; set; }
         public int Status { get; set; }
+        public bool? IsFeatured { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using ProjectTravel.Ultilities;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -211,23 +212,23 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="~/files/Avatar/avt-1.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">BPM</span>
+                        <img src="@Functions._Avatar" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">@Functions._UserName</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Mạnh Phúc</h6>
-                            <span>Web Designer</span>
+                            <h6>@Functions._UserName</h6>
+                            <span>@Functions._FullName</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" asp-area="Admin" asp-controller="Profile" asp-action="Index">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>Thông tin tài khoản</span>
                             </a>
                         </li>
                         <li>
@@ -255,9 +256,9 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" asp-controller="Logout" asp-action="Logout">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Đăng xuất</span>
                             </a>
                         </li>
 

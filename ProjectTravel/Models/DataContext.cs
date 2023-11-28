@@ -19,11 +19,13 @@ namespace ProjectTravel.Models
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<view_Featured_Post> FeaturedPosts { get; set; }
-
         public DbSet<Testimonial> Testimonials { get; set; }
 
-        public DbSet<Featured_Post> DBFeaturedPosts { get; set; }
+        public DbSet<Service> Services { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
 
 
     }

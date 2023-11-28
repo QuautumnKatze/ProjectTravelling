@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectTravel.Models;
 
-
 namespace ProjectTravel.Areas.Admin.Components
 {
 	[ViewComponent(Name = "AdminMenu")]

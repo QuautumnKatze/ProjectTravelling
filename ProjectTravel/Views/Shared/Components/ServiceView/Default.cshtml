@@ -1,0 +1,39 @@
+﻿@model IList<Service>
+
+<div class="section service-section-1">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-3 mb-4 mb-lg-0">
+				<div class="heading-content" data-aos="fade-up">
+					<h2><span class="d-block">Dịch vụ</span></h2>
+					<p>Chúng tôi luôn cố gắng để sẵn sàng đáp ứng những nhu cầu dịch vụ cho quý khách với tôn chỉ luôn đặt trải nghiệm của người dùng lên hàng đầu</p>
+					<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Xem tất cả</a></p>
+				</div>
+			</div>
+			<div class="col-lg-9">
+				<div class="row">
+					@foreach (var item in Model)
+					{
+						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+							<div class="service-1">
+								<a href="#">
+									<span class="icon">
+										<img src="@item.Icon" alt="Image" class="img-fluid">
+									</span>
+									<div>
+
+										<h3>@item.ServiceName</h3>
+										<p>@item.Introduce</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+

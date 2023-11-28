@@ -1,0 +1,85 @@
+﻿@model ProjectTravel.Areas.Admin.Models.Account;
+@using ProjectTravel.Ultilities;
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Chi tiết tài khoản</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item">Quản lý tài khoản</li>
+                <li class="breadcrumb-item active">Chi tiết tài khoản</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-3" style="margin-top:15px;margin-left:10px">
+                        <form>
+                            
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Avatar</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <img src="@Model.Avatar" width="80px" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Tên đầy đủ</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value="@Model.FullName" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Tên tài khoản</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value="@Model.UserName" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Ngày sinh</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value="@Model.Birthday.ToString("dd/MM/yyyy")" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Số điện thoại</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value="@Model.Phone" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Email</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value="@Model.Email" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Quyền hạn</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select asp-for="RoleID" class="form-control" asp-items="@(new SelectList(ViewBag.rList,"Value","Text"))" disabled>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">Địa chỉ</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value=" @Model.Address" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-lg-2 col-form-label">IsActive</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input type="text" class="form-control" value=" @Model.IsActive" readonly>
+                                </div>
+                            </div>
+                            <a asp-controller="Account" asp-action="Index" class="btn btn-app bg-warning" style="margin-left:40%"><i class="bi bi-arrow-left-circle"></i> Quay lại</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->

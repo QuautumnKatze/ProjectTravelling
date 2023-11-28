@@ -1,43 +1,87 @@
 ﻿@using ProjectTravel.Ultilities;
-@model ProjectTravel.Models.Featured_Post
+@model ProjectTravel.Models.Post
+
 @{
 	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <main id="main" class="main">
-	<div class="pagetitle">
-		<h2>Sửa bài viết nổi bật</h2>
-	</div>
-	<!-- Begin Form -->
-	<form asp-action="Edit" method="post">
-		<div class="form-row">
-			<input type="text" class="form-control mb-3" asp-for="FeaturedPostID" disabled />
-
-			<div class="form-group col-md-6">
-				<label asp-for="PostID">Chọn bài viết</label>
-				<select asp-for="PostID"
-						class="form control"
-						asp-items="@(new SelectList(ViewBag.postList, "Value", "Text"))">
-				</select>
-				<span asp-validation-for="PostID" class="alert-danger"></span>
-			</div>
+	<div class="container shadow p-5">
+		<div class="row pb-2">
+			<h2>Sửa bài viết</h2>
 		</div>
 
-		<div class="my-3">
+		<form asp-action="Edit" method="post">
+			<div asp-validation-summary="All"></div>
+
+			<div class="form-row">
+				<input type="text" class="form-control mb-3" asp-for="PostID" type="hidden" />
+				<div class="form-group col-md-6">
+					<label asp-for="MenuID">Chọn mục</label>
+					<input type="text" class="form-control mb-3" asp-for="MenuID" readonly />
+					<span asp-validation-for="MenuID" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Title">Tiêu đề</label>
+					<input type="text" class="form-control mb-3" asp-for="Title" readonly />
+					<span asp-validation-for="Title" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Abstract">Mô tả</label>
+					<input type="text" class="form-control mb-3" asp-for="Abstract" readonly/>
+					<span asp-validation-for="Abstract" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label">Hình ảnh</label>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon"  readonly/>
+						<span asp-validation-for="Images" class="alert-danger"></span>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Contents">Nội dung</label>
+					<textarea class="form-control mb-3" asp-for="Contents" readonly></textarea>
+					<span asp-validation-for="Contents" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Author">Tác giả</label>
+					<input type="text" class="form-control mb-3" asp-for="Author" readonly />
+					<span asp-validation-for="Author" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-6 mt-3 mb-3" readonly>
+					<label>
+						@Html.CheckBox("IsFeatured", false)
+						Hiển thị nổi bật?
+					</label>
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="IsActive" class="form-control" value="true" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="CreatedDate" class="form-control" value="@Functions.getCurrentDate()" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="PostOrder" class="form-control" value="1" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="CategoryID" class="form-control" value="1" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="Status" class="form-control" value="1" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="Link" class="form-control" value="NULL" />
+				</div>
+			</div>
+
 			<a class="btn btn-app bg-warning p-2 mr-5" href="javascript:history.back()">
 				<i class="bi bi-arrow-left"></i> Quay lại
 			</a>
 			<button type="submit" class="btn btn-app bg-info p-2">
 				<i class="bi bi-save"></i> Lưu
 			</button>
-		</div>
-		
-	</form>
+		</form>
+	</div>
 </main>
-
-@{
-	var summerNote = new ProjectTravel.Areas.Admin.Models.SummerNote("#Contents");
-	<partial name="_SummerNote" model="summerNote" />
-}
 
 

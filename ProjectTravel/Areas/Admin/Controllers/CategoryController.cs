@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectTravel.Models;
+using ProjectTravel.Ultilities;
 
 namespace ProjectTravel.Areas.Admin.Controllers
 {
@@ -14,13 +15,21 @@ namespace ProjectTravel.Areas.Admin.Controllers
 		}
 		public IActionResult Index()
 		{
+			//kiểm tra đăng nhập
+			if (!Functions.IsLogin())
+				return LocalRedirect("/Admin/Login/Index");
+
 			var cateList = _context.Categories.OrderBy(c => c.CategoryID).ToList();
 			return View(cateList);
 		}
 
 		public IActionResult Delete(int? id)
 		{
-			if (id == null || id == 0)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (id == null || id == 0)
 			{
 				return NotFound();
 			}
@@ -36,7 +45,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult Delete(int id)
 		{
-			var deleCate = _context.Categories.Find(id);
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            var deleCate = _context.Categories.Find(id);
 			if (deleCate == null)
 			{
 				return NotFound();
@@ -48,6 +61,10 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Create()
         {
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
             var mnList = (from m in _context.Menus
                           select new SelectListItem()
                           {
@@ -67,7 +84,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Create(Category ctgr)
 		{
-			if (ModelState.IsValid)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (ModelState.IsValid)
 			{
 				_context.Categories.Add(ctgr);
 				_context.SaveChanges();
@@ -78,7 +99,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Edit(int? id)
 		{
-			if (id == null || id == 0)
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (id == null || id == 0)
 			{
 				return NotFound();
 			}
@@ -94,7 +119,12 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
 		public IActionResult Edit(Category ctgr)
 		{
-			if (ModelState.IsValid)
+
+            //kiểm tra đăng nhập
+            if (!Functions.IsLogin())
+                return LocalRedirect("/Admin/Login/Index");
+
+            if (ModelState.IsValid)
 			{
 				_context.Categories.Update(ctgr);
 				_context.SaveChanges();

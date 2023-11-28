@@ -1,0 +1,76 @@
+﻿@using ProjectTravel.Areas.Admin.Models;
+@model IList<Account>
+
+<div class="wrapper">
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h2>Tài khoản bị khóa</h2>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Quản lý tài khoản</li>
+                    <li class="breadcrumb-item active">Tài khoản bị khóa</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Thông tin tài khoản</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên tài khoản</th>
+                                            <th>Tên đầy đủ</th>
+                                            <td>Email</td>
+                                            <td>Trạng thái</td>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th>@item.AccountID</th>
+                                                <td>@item.UserName</td>
+                                                <td>@item.FullName</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.IsActive</td>
+                                                <td>
+                                                    <a asp-area="Admin" asp-controller="Account" asp-action="Detail"
+                                                       asp-route-id="@item.AccountID" class="text-white btn btn-app bg-primary btn-sm"
+                                                       title="Chi tiết tài khoản"><i class="bi bi-eye-fill"></i></a>
+
+                                                    <a asp-area="Admin" asp-controller="Account" asp-action="Enable"
+                                                       asp-route-id="@item.AccountID" class="text-white btn btn-app bg-success btn-sm"
+                                                       title="Mở khóa tài khoản"><i class="bi bi-person-check-fill"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+
+    </main>
+</div>

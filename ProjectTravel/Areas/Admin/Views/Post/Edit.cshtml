@@ -5,13 +5,22 @@
 }
 
 <main id="main" class="main">
-	<div class="pagetitle">
+	<div class="row pb-2">
 		<h2>Sửa bài viết</h2>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a style="text-decoration:none" href="/Admin/Home/Index">Trang chủ</a></li>
+				<li class="breadcrumb-item">Quản lý bài viết</li>
+				<li class="breadcrumb-item active">Sửa bài viết</li>
+			</ol>
+		</nav>
 	</div>
-	<!-- Begin Form -->
+
 	<form asp-action="Edit" method="post">
+		<div asp-validation-summary="All"></div>
+
 		<div class="form-row">
-			<input type="text" class="form-control mb-3" asp-for="PostID" disabled />
+			<input type="text" class="form-control mb-3" asp-for="PostID" type="hidden" />
 			<div class="form-group col-md-6">
 				<label asp-for="MenuID">Chọn mục</label>
 				<select asp-for="MenuID"
@@ -23,10 +32,12 @@
 			<div class="form-group col-md-12">
 				<label asp-for="Title">Tiêu đề</label>
 				<input type="text" class="form-control mb-3" asp-for="Title" />
+				<span asp-validation-for="Title" class="alert-danger"></span>
 			</div>
 			<div class="form-group col-md-12">
 				<label asp-for="Abstract">Mô tả</label>
 				<input type="text" class="form-control mb-3" asp-for="Abstract" />
+				<span asp-validation-for="Abstract" class="alert-danger"></span>
 			</div>
 			<div class="form-group col-md-12">
 				<label class="control-label">Hình ảnh</label>
@@ -35,11 +46,18 @@
 						<button class="btn btn-success" type="button" onclick="openDialog()">Chọn một tấm ảnh</button>
 					</div>
 					<input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon" />
+					<span asp-validation-for="Images" class="alert-danger"></span>
 				</div>
 			</div>
 			<div class="form-group col-md-12">
 				<label asp-for="Contents">Nội dung</label>
 				<textarea class="form-control mb-3" asp-for="Contents"></textarea>
+				<span asp-validation-for="Contents" class="alert-danger"></span>
+			</div>
+			<div class="form-group col-md-12">
+				<label asp-for="Author">Tác giả</label>
+				<input type="text" class="form-control mb-3" asp-for="Author" />
+				<span asp-validation-for="Author" class="alert-danger"></span>
 			</div>
 			<div class="form-group col-md-6 mt-3 mb-3">
 				<label>
@@ -47,6 +65,8 @@
 					Hiển thị
 				</label>
 			</div>
+			<input type="text" class="form-control mb-3" asp-for="IsFeatured" type="hidden" />
+
 			<div class="form-group d-none">
 				<input asp-for="CreatedDate" class="form-control" value="@Functions.getCurrentDate()" />
 			</div>

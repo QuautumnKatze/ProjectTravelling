@@ -1,0 +1,138 @@
+﻿@model ProjectTravel.Areas.Admin.Models.Account;
+@using ProjectTravel.Ultilities;
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Thông tin tài khoản</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a style="text-decoration:none" href="/Admin/Home/Index">Trang chủ</a></li>
+                <li class="breadcrumb-item">Tài khoản</li>
+                <li class="breadcrumb-item active">Thông tin tài khoản</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <img src="@Functions._Avatar" alt="Profile" class="rounded-circle">
+                        <h2>@Functions._UserName</h2>
+                        <h3>@Functions._FullName</h3>
+                        <div class="social-links mt-2">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <a style="text-decoration:none" asp-area="Admin" asp-controller="Profile" asp-action="Index"><button class="nav-link" data-bs-toggle="tab">Thông tin</button></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab">Cập nhật</button>
+                            </li>
+
+                            @* <li class="nav-item">
+                                <a style="text-decoration:none" asp-area="Admin" asp-controller="Profile" asp-action="EditAccount"><button class="nav-link" data-bs-toggle="tab">Cài đặt</button></a>
+                            </li> *@
+
+                            <li class="nav-item">
+                                <a style="text-decoration:none" asp-area="Admin" asp-controller="Profile" asp-action="EditPassword"><button class="nav-link" data-bs-toggle="tab">Đổi mật khẩu</button></a>
+                            </li>
+
+                        </ul>
+                        <!-- Bordered Tabs -->
+                        <div class="tab-content pt-2">
+                            <div class="tab-pane fade show active profile-overview">
+                                <h5 class="card-title">Cập nhật thông tin</h5>
+
+                                <form asp-action="EditProfile" method="post">
+                                    <div asp-validation-summary="All"></div>
+                                    <input type="hidden" class="form-control" asp-for="UserName">
+                                    <input type="hidden" class="form-control" asp-for="Password">
+
+                                    <div class="row mb-3">
+                                        <input type="text" class="form-control mb-3" asp-for="AccountID" type="hidden">
+                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Ảnh đại diện</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <img class="m-2" src="@Functions._Avatar" style="width:auto; height:100px" alt="Profile">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-app bg-info" type="button" onclick="openDialog()">Chọn</button>
+                                                </div>
+                                                <input type="text" style="margin-left:10px" class="form-control" asp-for="Avatar" id="file_input" aria-describedby="button-addon2" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-md-4 col-lg-3 col-form-label">Tên đầy đủ</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input type="text" class="form-control" asp-for="FullName">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input type="email" class="form-control" asp-for="Email">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input type="text" class="form-control" asp-for="Phone">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-md-4 col-lg-3 col-form-label">Địa chỉ</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <textarea type="text" rows="3" class="form-control" asp-for="Address"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-md-4 col-lg-3 col-form-label">Ngày sinh</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input type="date" class="form-control" asp-for="Birthday">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-app bg-info"><span class="bi bi-save"></span> Lưu lại</button>
+                                    </div>
+                                </form><!-- End Profile Edit Form -->
+                            </div>
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+@{
+    var summerNote = new ProjectTravel.Areas.Admin.Models.SummerNote("#Detail");
+    <partial name="_SummerNote" model="summerNote" />
+}

@@ -6,10 +6,10 @@ using ProjectTravel.Ultilities;
 namespace ProjectTravel.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class MenuController : Controller
+    public class ServiceController : Controller
     {
         private readonly DataContext _context;
-        public MenuController(DataContext context)
+        public ServiceController(DataContext context)
         {
             _context = context;
         }
@@ -19,8 +19,8 @@ namespace ProjectTravel.Areas.Admin.Controllers
             if (!Functions.IsLogin())
                 return LocalRedirect("/Admin/Login/Index");
 
-            var mnList = _context.Menus.OrderBy(m => m.MenuID).ToList();
-            return View(mnList);
+            var servList = _context.Services.OrderBy(c => c.ServiceID).ToList();
+            return View(servList);
         }
 
         public IActionResult Delete(int? id)
@@ -33,13 +33,13 @@ namespace ProjectTravel.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var mn = _context.Menus.Find(id);
+            var serv = _context.Services.Find(id);
 
-            if (mn == null)
+            if (serv == null)
             {
                 return NotFound();
             }
-            return View(mn);
+            return View(serv);
         }
 
         [HttpPost]
@@ -49,14 +49,14 @@ namespace ProjectTravel.Areas.Admin.Controllers
             if (!Functions.IsLogin())
                 return LocalRedirect("/Admin/Login/Index");
 
-            var deleMenu = _context.Menus.Find(id);
-            if (deleMenu == null)
+            var deleServ = _context.Services.Find(id);
+            if (deleServ == null)
             {
                 return NotFound();
             }
-            _context.Menus.Remove(deleMenu);
+            _context.Services.Remove(deleServ);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return LocalRedirect("/Admin/Service/Index");
         }
 
         public IActionResult Create()
@@ -65,24 +65,24 @@ namespace ProjectTravel.Areas.Admin.Controllers
             if (!Functions.IsLogin())
                 return LocalRedirect("/Admin/Login/Index");
 
-            var mnList = (from m in _context.Menus
-                          select new SelectListItem()
-                          {
-                              Text = m.MenuName,
-                              Value = m.MenuID.ToString()
-                          }).ToList();
-            mnList.Insert(0, new SelectListItem()
-            {
-                Text = "----Select----",
-                Value = "0"
-            });
-            ViewBag.mnList = mnList;
+            //var mnList = (from m in _context.Menus
+            //              select new SelectListItem()
+            //              {
+            //                  Text = m.MenuName,
+            //                  Value = m.MenuID.ToString()
+            //              }).ToList();
+            //mnList.Insert(0, new SelectListItem()
+            //{
+            //    Text = "----Select----",
+            //    Value = "0"
+            //});
+            //ViewBag.mnList = mnList;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create(Menu mn)
+        public IActionResult Create(Service serv)
         {
             //kiểm tra đăng nhập
             if (!Functions.IsLogin())
@@ -90,11 +90,11 @@ namespace ProjectTravel.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Menus.Add(mn);
+                _context.Services.Add(serv);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return LocalRedirect("/Admin/Service/Index");
             }
-            return View(mn);
+            return View(serv);
         }
 
         public IActionResult Edit(int? id)
@@ -107,41 +107,30 @@ namespace ProjectTravel.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var mn = _context.Menus.Find(id);
-            if (mn == null)
+            var serv = _context.Services.Find(id);
+            if (serv == null)
             {
                 return NotFound();
             }
-            var mnList = (from m in _context.Menus
-                          select new SelectListItem()
-                          {
-                              Text = m.MenuName,
-                              Value = m.MenuID.ToString(),
-                          }).ToList();
-            mnList.Insert(0, new SelectListItem()
-            {
-                Text = "----Select----",
-                Value = "0"
-            });
-            ViewBag.mnList = mnList;
-            return View(mn);
+            return View(serv);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Edit(Menu mn)
+        public IActionResult Edit(Service serv)
         {
+
             //kiểm tra đăng nhập
             if (!Functions.IsLogin())
                 return LocalRedirect("/Admin/Login/Index");
 
             if (ModelState.IsValid)
             {
-                _context.Menus.Update(mn);
+                _context.Services.Update(serv);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return LocalRedirect("/Admin/Service/Index");
             }
-            return View(mn);
+            return View(serv);
         }
     }
 }

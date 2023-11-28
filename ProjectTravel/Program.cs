@@ -1,17 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
 using ProjectTravel.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
-
-builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
