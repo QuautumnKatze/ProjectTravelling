@@ -27,6 +27,8 @@ namespace ProjectTravel.Models
 
         public DbSet<Role> Roles { get; set; }
 
+		public DbSet<Contact> Contacts { get; set; }
 
-    }
+
+	}
 }
