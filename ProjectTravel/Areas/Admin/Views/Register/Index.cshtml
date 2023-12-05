@@ -78,9 +78,14 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Tên tài khoản</label>
+                      <label for="yourName" class="form-label">Tên người dùng</label>
                       <input type="text" asp-for="FullName" class="form-control" id="yourName" required>
                       <div class="invalid-feedback">Nhập tên người dùng!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourBirthday" class="form-label">Ngày sinh</label>
+                        <input type="date" asp-for="Birthday" class="form-control"/>
                     </div>
 
                     <div class="col-6">
@@ -103,10 +108,6 @@
 
                     <div class="form-group d-none">
                         <input asp-for="Address" class="form-control" value="None" />
-                    </div>
-
-                    <div class="form-group d-none">
-                        <input asp-for="Birthday" class="form-control" value="@DateTime.MinValue" />
                     </div>
 
                     <div class="form-group d-none">

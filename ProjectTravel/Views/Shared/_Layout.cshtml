@@ -30,6 +30,20 @@
 	<link rel="stylesheet" href="~/css/glightbox.min.css">
 	<link rel="stylesheet" href="~/css/style.css">
 
+	<!-- Vendor CSS (Contain Bootstrap, Icon Fonts) -->
+	<link rel="stylesheet" href="~/css/vendor/font-awesome.min.css" />
+	<link rel="stylesheet" href="~/css/vendor/Pe-icon-7-stroke.css" />
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="~/css/plugins/animate.min.css">
+	<link rel="stylesheet" href="~/css/plugins/jquery-ui.min.css">
+	<link rel="stylesheet" href="~/css/plugins/swiper-bundle.min.css">
+	<link rel="stylesheet" href="~/css/plugins/nice-select.css">
+	<link rel="stylesheet" href="~/css/plugins/magnific-popup.min.css" />
+
+	<!-- Toastr CSS-->
+	<link href="~/toastr/toastr.css" rel="stylesheet" />
+
 
 	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
 </head>
@@ -193,5 +207,27 @@
 		<script src="~/js/flatpickr.js"></script>
 		<script src="~/js/glightbox.min.js"></script>
 		<script src="~/js/custom.js"></script>
+
+		<!-- Vendor JS -->
+		<script src="~/js/vendor/bootstrap.bundle.min.js"></script>
+		<script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+		<script src="~/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+		<script src="~/js/vendor/modernizr-3.11.2.min.js"></script>
+		<script src="~/js/vendor/jquery.waypoints.js"></script>
+
+		<!--Plugins JS-->
+		<script src="~/js/plugins/wow.min.js"></script>
+		<script src="~/js/plugins/jquery-ui.min.js"></script>
+		<script src="~/js/plugins/swiper-bundle.min.js"></script>
+		<script src="~/js/plugins/jquery.nice-select.js"></script>
+		<script src="~/js/plugins/parallax.min.js"></script>
+		<script src="~/js/plugins/jquery.magnific-popup.min.js"></script>
+
+		<!--Main JS (Common Activation Codes)-->
+		<script src="~/js/main.js"></script>
+		<script src="~/js/untils.js"></script>
+		<script src="~/toastr/toastr.min.js"></script>
+
+		@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
