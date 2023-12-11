@@ -25,7 +25,19 @@ namespace ProjectTravel.Controllers
 			{
 				if (string.IsNullOrEmpty(message))
 				{
-					Functions._Message = "Nội dung không được để trống !";
+					Functions._Message = "Nội dung không được để trống!";
+					return false;
+				}
+				else if (string.IsNullOrEmpty(name))
+				{
+
+					Functions._Message = "Không được để trống tên!";
+					return false;
+				}
+				else if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email))
+				{
+
+					Functions._Message = "Không được để trống email hoặc số điện thoại!";
 					return false;
 				}
 				Contact content = new Contact();

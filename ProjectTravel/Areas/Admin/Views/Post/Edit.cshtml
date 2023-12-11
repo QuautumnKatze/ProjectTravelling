@@ -61,8 +61,14 @@
 			</div>
 			<div class="form-group col-md-6 mt-3 mb-3">
 				<label>
-					@Html.CheckBox("IsActive", false)
+					@Html.CheckBox("IsActive", Model.IsFeatured)
 					Hiển thị
+				</label>
+			</div>
+			<div class="form-group col-md-6 mt-3 mb-3">
+				<label>
+					@Html.CheckBox("IsFeatured", Model.IsFeatured)
+					Nổi bật
 				</label>
 			</div>
 			<input type="text" class="form-control mb-3" asp-for="IsFeatured" type="hidden" />
