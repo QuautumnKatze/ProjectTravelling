@@ -7,7 +7,7 @@
 		<div class="site-navigation">
 			<div class="row">
 				<div class="col-6 col-lg-3">
-					<a href="https://localhost:44360/Home/Index" class="logo m-0 float-start">Tr4vel</a>
+					<a href="https://localhost:7036/Home/Index" class="logo m-0 float-start">Tr4vel</a>
 				</div>
 				<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 					<ul class="js-clone-nav  text-center site-menu p-0 m-0">
@@ -57,9 +57,23 @@
 				</div>
 				<div class="col-6 col-lg-3 text-lg-end">
 					<ul class="js-clone-nav d-none d-lg-inline-block text-end site-menu ">
-
-						<li class="cta-button"><a href="/Login">Đăng nhập</a></li>
 						<li class="cta-button"><a href="/Contact">Liên hệ</a></li>
+						@if (!Functions.IsLogin())
+						{
+							<li class="cta-button"><a href="/Login">Đăng nhập</a></li>
+						}
+						else {
+							<div class="btn-group">
+								<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									@Functions._UserName
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#">Tài khoản</a>
+									<a class="dropdown-item" href="#">Cài đặt</a>
+									<a class="dropdown-item" href="#">Đăng xuất</a>
+								</div>
+							</div>
+						}
 					</ul>
 
 					<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">

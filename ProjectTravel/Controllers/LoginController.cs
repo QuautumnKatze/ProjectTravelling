@@ -4,9 +4,8 @@ using ProjectTravel.Areas.Admin.Models;
 using ProjectTravel.Models;
 using ProjectTravel.Ultilities;
 
-namespace ProjectTravel.Areas.Admin.Controllers
+namespace ProjectTravel.Controllers
 {
-    [Area("Admin")]
     public class LoginController : Controller
     {
         private readonly DataContext _context;
@@ -28,20 +27,12 @@ namespace ProjectTravel.Areas.Admin.Controllers
             //Mã hóa mật khẩu trước khi kiểm tra
             string pw = Functions.MD5Password(user.Password);
             //Kiểm tra sự tồn tại của tên tài khoản và mật khẩu
-            var check = _context.Accounts.Where(m => (m.UserName == user.UserName) && (m.Password == pw) && (m.RoleID == 1)).FirstOrDefault();
+            var check = _context.Accounts.Where(m => (m.UserName == user.UserName) && (m.Password == pw)).FirstOrDefault();
             if (check == null)
             {
                 Functions._Message = "Sai tên tài khoản hoặc mật khẩu";
-                return LocalRedirect("/Admin/Login/Index");
+                return LocalRedirect("/Login/Index");
             }
-
-            check = _context.Accounts.Where(m => (m.RoleID == 1)).FirstOrDefault();
-            if (check == null)
-            {
-                Functions._Message = "Bạn không có đủ quyền hạn để đăng nhập hệ thống quản trị";
-                return LocalRedirect("/Admin/Login/Index");
-            }
-
             //Nếu đăng nhập thành công thì lưu lại thông tin đăng nhập và vào Admin
             Functions._Message = string.Empty;
             Functions._AccountID = check.AccountID;
@@ -55,7 +46,7 @@ namespace ProjectTravel.Areas.Admin.Controllers
             Functions._Birthday = string.IsNullOrEmpty(check.Birthday.ToString()) ? DateTime.MinValue : check.Birthday;
             Functions._RoleID = check.RoleID;
 
-            return LocalRedirect("/Admin/Home/Index");
+            return LocalRedirect("/Home/Index");
         }
     }
 }
