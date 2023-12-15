@@ -29,6 +29,7 @@ namespace ProjectTravel.Models
 
 		public DbSet<Contact> Contacts { get; set; }
 
+        public DbSet<PostComment> PostComments { get; set; }
 
-	}
+    }
 }

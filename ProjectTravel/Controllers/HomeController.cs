@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectTravel.Models;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 
 namespace ProjectTravel.Controllers
 {
@@ -37,6 +38,7 @@ namespace ProjectTravel.Controllers
             {
                 return NotFound();
             }
+            ViewBag.postComment = _context.PostComments.Where(i => i.PostID  == id).ToList();
             return View(post);
         }
 
@@ -58,6 +60,28 @@ namespace ProjectTravel.Controllers
             }
 
             return View(list);
+        }
+
+        [HttpPost]
+        public IActionResult Create(long id, string name, string phone, string email, string message)
+        {
+            try
+            {
+                PostComment comment = new PostComment();
+                comment.PostID = id;
+                comment.Name = name;
+                comment.Phone = phone;
+                comment.Email = email;
+                comment.Contents = message;
+                comment.CreatedDate = DateTime.Now;
+                _context.Add(comment);
+                _context.SaveChangesAsync();
+                return Json(new { status = true });
+            }
+            catch
+            {
+                return Json(new { status = false });
+            }
         }
 
 

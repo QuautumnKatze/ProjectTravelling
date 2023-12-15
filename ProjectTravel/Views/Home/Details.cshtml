@@ -1,8 +1,11 @@
 ﻿@model ProjectTravel.Models.Post
 
-<style>
-	.container
-</style>
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	List<PostComment> postComment = ViewBag.postComment;
+}
+
 
 <div class="hero overlay">
 	<div class="img-bg rellax">
@@ -33,119 +36,91 @@
 				</div>
 
 
-				<div class="pt-5">
+				<div id="post_comment" class="pt-5">
 					<h3 class="mb-5">6 Comments</h3>
+					
 					<ul class="comment-list">
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_2.jpg" alt="Free Website Template by Free-Template.co">
-							</div>
-							<div class="comment-body">
-								<h3>Jacob Smith</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-								<p><a href="#" class="reply">Reply</a></p>
-							</div>
-						</li>
-
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_3.jpg" alt="Free Website Template by Free-Template.co">
-							</div>
-							<div class="comment-body">
-								<h3>Chris Meyer</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-								<p><a href="#" class="reply">Reply</a></p>
-							</div>
-
-							<ul class="children">
-								<li class="comment">
-									<div class="vcard bio">
-										<img src="images/person_1.jpg" alt="Free Website Template by Free-Template.co">
-									</div>
-									<div class="comment-body">
-										<h3>Chintan Patel</h3>
-										<div class="meta">January 9, 2018 at 2:21pm</div>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-										<p><a href="#" class="reply">Reply</a></p>
-									</div>
-
-
-									<ul class="children">
-										<li class="comment">
-											<div class="vcard bio">
-												<img src="images/person_1.jpg" alt="Free Website Template by Free-Template.co">
-											</div>
-											<div class="comment-body">
-												<h3>Jean Doe</h3>
-												<div class="meta">January 9, 2018 at 2:21pm</div>
-												<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-												<p><a href="#" class="reply">Reply</a></p>
-											</div>
-
-											<ul class="children">
-												<li class="comment">
-													<div class="vcard bio">
-														<img src="images/person_2.jpg" alt="Free Website Template by Free-Template.co">
-													</div>
-													<div class="comment-body">
-														<h3>Ben Afflick</h3>
-														<div class="meta">January 9, 2018 at 2:21pm</div>
-														<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-														<p><a href="#" class="reply">Reply</a></p>
-													</div>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-
-						<li class="comment">
-							<div class="vcard bio">
-								<img src="images/person_1.jpg" alt="Free Website Template by Free-Template.co">
-							</div>
-							<div class="comment-body">
-								<h3>Jean Doe</h3>
-								<div class="meta">January 9, 2018 at 2:21pm</div>
-								<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-								<p><a href="#" class="reply">Reply</a></p>
-							</div>
-						</li>
+						@foreach (var item in postComment)
+						{
+							<li class="comment">
+								<div class="vcard bio">
+									<img src="/files/avatar/avt-default.jpg" alt="">
+								</div>
+								<div class="comment-body">
+									<h3>@item.Name</h3>
+									<div class="meta">@item.CreatedDate</div>
+									<p>@item.Contents</p>
+									<p><a href="#" class="reply">Reply</a></p>
+								</div>
+							</li>
+						}
 					</ul>
+				</div>
 					<!-- END comment-list -->
 
-					<div class="comment-form-wrap pt-5">
+				<div class="comment-form-wrap pt-5">
 						<h3 class="mb-5">Leave a comment</h3>
 						<form action="#" class="">
 							<div class="mb-3">
 								<label for="name">Name *</label>
-								<input type="text" class="form-control" id="name">
+								<input type="text" class="form-control" id="c_name">
 							</div>
 							<div class="mb-3">
 								<label for="email">Email *</label>
-								<input type="email" class="form-control" id="email">
+								<input type="email" class="form-control" id="c_email">
 							</div>
 							<div class="mb-3">
-								<label for="website">Website</label>
-								<input type="url" class="form-control" id="website">
+								<label for="phone">Phone</label>
+								<input type="text" class="form-control" id="c_phone">
 							</div>
 
 							<div class="mb-3">
 								<label for="message">Message</label>
-								<textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+								<textarea name="" id="c_message" cols="30" rows="10" class="form-control"></textarea>
 							</div>
 							<div class="mb-3">
-								<input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
+								<input type="button" value="submit" id="c_submit" class="btn btn-primary btn-md text-white">
 							</div>
 
 						</form>
-					</div>
 				</div>
+				
 
 			</div>
 		</div>
 	</div>
 </div>
+<input type="hidden" id="post_id" value="@Model.PostID" />
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			$("#c_submit").click(function () {
+				_id = $("#post_id").val();
+				_name = $("#c_name").val();
+				_phone = $("#c_phone").val();
+				_email = $("#c_email").val();
+				_message = $("#c_message").val();
+				$.ajax({
+					url: "/Home/Create",
+					type: "POST",
+					data: { id: _id, name: _name, phone: _phone, email: _email, message: _message },
+					success: function (result) {
+						if (result != null) {
+							$("#c_name").val("");
+							$("#c_phone").val("");
+							$("#c_email").val("");
+							$("#c_message").val("");
+							_date = Untils.getCurrentDate();
+							toastr.success('Gửi thành công');
+							_sHtml = '<ul class="comment-list"> <li class="comment"> <div class="vcard bio"> <img src="/files/avatar/avt-default.jpg" alt=""> </div> <div class="comment-body"> <h3>' + _name + '</h3> <div class="meta">' + _date + '</div> <p>' + _message + '</p> <p><a href="#" class="reply">Reply</a></p> </div> </li> </ul>'
+							$("#post_comment").append(_sHtml);
+						}
+						else {
+							toastr.success('Gửi không thành công');
+						}
+					}
+				})
+			});
+		})
+	</script>
+}
