@@ -62,7 +62,7 @@ namespace ProjectTravel.Controllers
             return View(list);
         }
 
-        [HttpPost]
+		[HttpPost]
         public IActionResult Create(long id, string name, string phone, string email, string message)
         {
             try

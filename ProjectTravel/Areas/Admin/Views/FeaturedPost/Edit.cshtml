@@ -16,34 +16,34 @@
 
 			<div class="form-row">
 				<input type="text" class="form-control mb-3" asp-for="PostID" type="hidden" />
-				<div class="form-group col-md-6">
+				<div class="form-group d-none col-md-6">
 					<label asp-for="MenuID">Chọn mục</label>
 					<input type="text" class="form-control mb-3" asp-for="MenuID" readonly />
 					<span asp-validation-for="MenuID" class="alert-danger"></span>
 				</div>
-				<div class="form-group col-md-12">
+				<div class="form-group d-none col-md-12">
 					<label asp-for="Title">Tiêu đề</label>
 					<input type="text" class="form-control mb-3" asp-for="Title" readonly />
 					<span asp-validation-for="Title" class="alert-danger"></span>
 				</div>
-				<div class="form-group col-md-12">
+				<div class="form-group d-none col-md-12">
 					<label asp-for="Abstract">Mô tả</label>
 					<input type="text" class="form-control mb-3" asp-for="Abstract" readonly/>
 					<span asp-validation-for="Abstract" class="alert-danger"></span>
 				</div>
-				<div class="form-group col-md-12">
+				<div class="form-group d-none col-md-12">
 					<label class="control-label">Hình ảnh</label>
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon"  readonly/>
 						<span asp-validation-for="Images" class="alert-danger"></span>
 					</div>
 				</div>
-				<div class="form-group col-md-12">
+				<div class="form-group d-none col-md-12">
 					<label asp-for="Contents">Nội dung</label>
 					<textarea class="form-control mb-3" asp-for="Contents" readonly></textarea>
 					<span asp-validation-for="Contents" class="alert-danger"></span>
 				</div>
-				<div class="form-group col-md-12">
+				<div class="form-group d-none col-md-12">
 					<label asp-for="Author">Tác giả</label>
 					<input type="text" class="form-control mb-3" asp-for="Author" readonly />
 					<span asp-validation-for="Author" class="alert-danger"></span>
@@ -64,7 +64,7 @@
 					<input asp-for="PostOrder" class="form-control" value="1" />
 				</div>
 				<div class="form-group d-none">
-					<input asp-for="CategoryID" class="form-control" value="1" />
+					<input asp-for="ServiceID" class="form-control" value="1" />
 				</div>
 				<div class="form-group d-none">
 					<input asp-for="Status" class="form-control" value="1" />

@@ -2,6 +2,26 @@
 @using ProjectTravel.Ultilities;
 @model IList<Testimonial>
 
+<style>
+	.title {
+		display: block;
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* số dòng hiển thị */
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.short {
+		display: block;
+		display: -webkit-box;
+		-webkit-line-clamp: 7; /* số dòng hiển thị */
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+</style>
+
 <div class="section bg-light">
 
 
@@ -31,7 +51,7 @@
 						<div class="author">
 							<img src="@item.Images" alt="Free template by TemplateUX">
 							<h3>@item.FullName</h3>
-							<p class="position mb-5">@item.Description</p>
+							<p class="short position mb-5">@item.Description</p>
 						</div>
 						<p>
 							<div class="quote">&ldquo;</div>

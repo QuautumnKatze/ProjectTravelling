@@ -31,5 +31,9 @@ namespace ProjectTravel.Models
 
         public DbSet<PostComment> PostComments { get; set; }
 
+        public DbSet<Tour> Tours { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
+
     }
 }
