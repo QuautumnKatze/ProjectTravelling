@@ -9,7 +9,6 @@
 				<div class="heading-content" data-aos="fade-up">
 					<h2><span class="d-block">Dịch vụ</span></h2>
 					<p>Chúng tôi luôn cố gắng để sẵn sàng đáp ứng những nhu cầu dịch vụ cho quý khách với tôn chỉ luôn đặt trải nghiệm của người dùng lên hàng đầu</p>
-					<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Xem tất cả</a></p>
 				</div>
 			</div>
 			<div class="col-lg-9">
@@ -17,10 +16,10 @@
 					@foreach (var item in Model)
 					{
 						string url = Functions.TitleSlugGeneration("service", item.ServiceName, item.ServiceID);
-						@* if (!string.IsNullOrEmpty(item.Link))
+						if (!string.IsNullOrEmpty(item.Link))
 						{
 							url = item.Link;
-						} *@
+						}
 						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
 							<div class="service-1">
 								<a href="@url">

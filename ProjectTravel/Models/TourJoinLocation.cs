@@ -1,4 +1,6 @@
-﻿namespace ProjectTravel.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace ProjectTravel.Models
 {
 	public class TourJoinLocation
 	{

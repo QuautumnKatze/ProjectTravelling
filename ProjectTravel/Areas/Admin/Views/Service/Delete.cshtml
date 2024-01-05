@@ -1,5 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ProjectTravel.Models.Service;
 @{
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
+<main id="main" class="main">
+	<div class="pagetitle">
+		<h2>Xóa bài viết</h2>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/Admin/Home/Index">Trang chủ</a></li>
+				<li class="breadcrumb-item">Quản lý bài viết</li>
+				<li class="breadcrumb-item active">Xóa bài viết</li>
+			</ol>
+		</nav>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label asp-for="ServiceID">ID Dịch vụ</label>
+			<input type="text" class="form-control mb-3" asp-for="ServiceID" disabled />
+		</div>
+		<div class="form-group col-md-6">
+			<label asp-for="ServiceName">Tên dịch vụ</label>
+			<input type="text" class="form-control mb-3" asp-for="ServiceName" disabled />
+		</div>
+	</div>
+	<!-- Begin Form -->
+	<form asp-action="Delete" method="post">
+		<input type="hidden" asp-for="ServiceID" />
+		<a class="btn btn-app bg-warning p-2" href="javascript:history.back()">
+			<i class="bi bi-arrow-left"></i> Quay lại
+		</a>
+		<button type="submit" class="btn btn-app bg-danger p-2">
+			<i class="bi bi-trash"></i> Xóa Menu
+		</button>
+	</form>
+	<!-- End Form -->
+</main>

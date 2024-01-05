@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectTravel.Models;
+using ProjectTravel.Ultilities;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 
@@ -26,7 +27,7 @@ namespace ProjectTravel.Controllers
             return View();
         }
 
-        [Route("/post-{slug}-{id:long}.html", Name = "Details")]
+        [Route("/post/{slug}-{id:long}.html", Name = "Details")]
         public IActionResult Details(long? id)
         {
             if (id == null) 
@@ -42,7 +43,7 @@ namespace ProjectTravel.Controllers
             return View(post);
         }
 
-        [Route("/list-{slug}-{id:int}.html", Name = "List")]
+        [Route("/list/{slug}-{id:int}.html", Name = "List")]
         public IActionResult List(int? id)
         {
             if (id == null)
@@ -62,8 +63,24 @@ namespace ProjectTravel.Controllers
             return View(list);
         }
 
+		[Route("/dulich/{slug}-{id:long}.html", Name = "Tour Details")]
+		public IActionResult TourDetails(long? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var tour = _context.Tours.FirstOrDefault(m => (m.TourID == id) && (m.IsActive == true));
+			if (tour == null)
+			{
+				return NotFound();
+			}
+			//ViewBag.postComment = _context.PostComments.Where(i => i.PostID == id).ToList();
+			return View(tour);
+		}
+
 		[HttpPost]
-        public IActionResult Create(long id, string name, string phone, string email, string message)
+        public IActionResult CreateNoAccount(long id, string name, string phone, string email, string message)
         {
             try
             {
@@ -84,8 +101,30 @@ namespace ProjectTravel.Controllers
             }
         }
 
+		public IActionResult CreateWithAccount(long id, string name, string phone, string email, string message)
+		{
+			try
+			{
+				PostComment comment = new PostComment();
+				comment.PostID = id;
+				comment.Name = name;
+				comment.Phone = phone;
+				comment.Email = email;
+				comment.Contents = message;
+				comment.CreatedDate = DateTime.Now;
+                comment.AccountID = Functions._AccountID;
+				_context.Add(comment);
+				_context.SaveChangesAsync();
+				return Json(new { status = true });
+			}
+			catch
+			{
+				return Json(new { status = false });
+			}
+		}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

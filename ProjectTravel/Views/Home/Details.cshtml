@@ -1,4 +1,5 @@
 ﻿@model ProjectTravel.Models.Post
+@using ProjectTravel.Ultilities;
 
 @{
 	ViewData["Title"] = "Details";
@@ -16,8 +17,7 @@
 			<div class="col-lg-6 mx-auto text-center">
 				<p>Đăng bởi <a href="#">@Html.DisplayFor(m => m.Author)</a> vào ngày <a href="#">@Model.CreatedDate.ToString("dd/MM/yyyy")</a></p>
 				<h1 class="heading" data-aos="fade-up">@Html.DisplayFor(m => m.Title)</h1>
-@* 				<p data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
- *@			</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -57,8 +57,8 @@
 					</ul>
 				</div>
 					<!-- END comment-list -->
-
-
+				@if (!Functions.IsLogin())
+				{
 
 				<div class="comment-form-wrap pt-5">
 						<h3 class="mb-5">Hãy để lại bình luận</h3>
@@ -85,14 +85,45 @@
 							</div>
 
 						</form>
-				</div>
-				
+					</div>
+				} else
+				{
+					<div class="comment-form-wrap pt-5">
+						<h3 class="mb-5">Hãy để lại bình luận</h3>
+						<form action="#" class="">
+							<div class="mb-3">
+								
+								<input type="hidden" class="form-control" id="c_name" value="@Functions._FullName" readonly>
+							</div>
+							<div class="mb-3">
+					
+								<input type="hidden" class="form-control" id="c_email" value="@Functions._Email" readonly>
+							</div>
+							<div class="mb-3">
+								
+								<input type="hidden" class="form-control" id="c_phone" value="@Functions._Phone" readonly>
+							</div>
+
+							<div class="mb-3">
+								<label for="message">Message</label>
+								<textarea name="" id="c_message" cols="30" rows="10" class="form-control"></textarea>
+							</div>
+							<div class="mb-3">
+								<input type="button" value="submit" id="c_submit" class="btn btn-primary btn-md text-white">
+							</div>
+
+						</form>
+					</div>
+				}
+
 
 			</div>
 		</div>
 	</div>
 </div>
 <input type="hidden" id="post_id" value="@Model.PostID" />
+@if (!Functions.IsLogin())
+{
 @section Scripts{
 	<script>
 		$(document).ready(function () {
@@ -103,7 +134,7 @@
 				_email = $("#c_email").val();
 				_message = $("#c_message").val();
 				$.ajax({
-					url: "/Home/Create",
+					url: "/Home/CreateNoAccount",
 					type: "POST",
 					data: { id: _id, name: _name, phone: _phone, email: _email, message: _message },
 					success: function (result) {
@@ -125,4 +156,40 @@
 			});
 		})
 	</script>
+}
+} else
+{
+	@section Scripts{
+	<script>
+		$(document).ready(function () {
+			$("#c_submit").click(function () {
+				_id = $("#post_id").val();
+				_name = $("#c_name").val();
+				_phone = $("#c_phone").val();
+				_email = $("#c_email").val();
+				_message = $("#c_message").val();
+				$.ajax({
+					url: "/Home/CreateWithAccount",
+					type: "POST",
+					data: { id: _id, name: _name, phone: _phone, email: _email, message: _message },
+					success: function (result) {
+						if (result != null) {
+							$("#c_name").val("");
+							$("#c_phone").val("");
+							$("#c_email").val("");
+							$("#c_message").val("");
+							_date = Untils.getCurrentDate();
+							toastr.success('Gửi thành công');
+							_sHtml = '<ul class="comment-list"> <li class="comment"> <div class="vcard bio"> <img src="/files/avatar/avt-default.jpg" alt=""> </div> <div class="comment-body"> <h3>' + _name + '</h3> <div class="meta">' + _date + '</div> <p>' + _message + '</p> <p><a href="#" class="reply">Reply</a></p> </div> </li> </ul>'
+							$("#post_comment").append(_sHtml);
+						}
+						else {
+							toastr.success('Gửi không thành công');
+						}
+					}
+				})
+			});
+		})
+	</script>
+}
 }

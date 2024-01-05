@@ -3,101 +3,92 @@
 @{
 	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<div class="wrapper">
+	<main id="main" class="main">
+		<div class="pagetitle">
+			<h2>Thêm mới bài viết</h2>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a style="text-decoration:none" href="/Admin/Home/Index">Trang chủ</a></li>
+					<li class="breadcrumb-item">Quản lý bài viết</li>
+					<li class="breadcrumb-item active">Thêm mới bài viết</li>
+				</ol>
+			</nav>
+		</div>
+		<!-- Begin Form -->
+		<form asp-action="Create" method="post">
+			<div class="form-row">
+				<input type="hidden" asp-for="PostID" />
 
-<main id="main" class="main">
-	<div class="row pb-2">
-		<h2>Sửa bài viết</h2>
-		<nav>
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a style="text-decoration:none" href="/Admin/Home/Index">Trang chủ</a></li>
-				<li class="breadcrumb-item">Quản lý bài viết</li>
-				<li class="breadcrumb-item active">Sửa bài viết</li>
-			</ol>
-		</nav>
-	</div>
-
-	<form asp-action="Edit" method="post">
-		<div asp-validation-summary="All"></div>
-
-		<div class="form-row">
-			<input type="text" class="form-control mb-3" asp-for="PostID" type="hidden" />
-			<div class="form-group col-md-6">
-				<label asp-for="MenuID">Chọn mục</label>
-				<select asp-for="MenuID"
-						class="form control"
-						asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))">
-				</select>
-				<span asp-validation-for="MenuID" class="alert-danger"></span>
-			</div>
-			<div class="form-group col-md-12">
-				<label asp-for="Title">Tiêu đề</label>
-				<input type="text" class="form-control mb-3" asp-for="Title" />
-				<span asp-validation-for="Title" class="alert-danger"></span>
-			</div>
-			<div class="form-group col-md-12">
-				<label asp-for="Abstract">Mô tả</label>
-				<input type="text" class="form-control mb-3" asp-for="Abstract" />
-				<span asp-validation-for="Abstract" class="alert-danger"></span>
-			</div>
-			<div class="form-group col-md-12">
-				<label class="control-label">Hình ảnh</label>
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<button class="btn btn-success" type="button" onclick="openDialog()">Chọn một tấm ảnh</button>
+				<div class="form-group col-md-6 my-4">
+					<label asp-for="MenuID">Chọn mục</label>
+					<select asp-for="MenuID"
+							class="form control"
+							asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))">
+					</select>
+					<span asp-validation-for="MenuID" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Title">Tiêu đề</label>
+					<input type="text" class="form-control mb-3" asp-for="Title" />
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Abstract">Mô tả</label>
+					<input type="text" class="form-control mb-3" asp-for="Abstract" />
+				</div>
+				<div class="form-group col-md-12">
+					<label class="control-label">Hình ảnh</label>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<button class="btn btn-success" type="button" onclick="openDialog()">Chọn một tấm ảnh</button>
+						</div>
+						<input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon2" />
 					</div>
-					<input type="text" class="form-control" asp-for="Images" id="file_input" aria-describedby="button-addon" />
-					<span asp-validation-for="Images" class="alert-danger"></span>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Contents">Nội dung</label>
+					<textarea class="form-control mb-3" asp-for="Contents"></textarea>
+				</div>
+				<div class="form-group col-md-12">
+					<label asp-for="Author">Tác giả</label>
+					<input type="text" class="form-control mb-3" asp-for="Author" value="@Functions._UserName" readonly />
+				</div>
+				<div class="form-group col-md-6 mt-3 mb-3">
+					<label>
+						@Html.CheckBox("IsActive", false)
+						Hiển thị
+					</label>
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="IsFeatured" class="form-control" value="false" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="CreatedDate" class="form-control" value="@Functions.getCurrentDate()" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="PostOrder" class="form-control" value="1" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="ServiceID" class="form-control" value="1" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="Status" class="form-control" value="1" />
+				</div>
+				<div class="form-group d-none">
+					<input asp-for="Link" class="form-control" value="NULL" />
 				</div>
 			</div>
-			<div class="form-group col-md-12">
-				<label asp-for="Contents">Nội dung</label>
-				<textarea class="form-control mb-3" asp-for="Contents"></textarea>
-				<span asp-validation-for="Contents" class="alert-danger"></span>
-			</div>
-			<div class="form-group col-md-12">
-				<label asp-for="Author">Tác giả</label>
-				<input type="text" class="form-control mb-3" asp-for="Author" />
-				<span asp-validation-for="Author" class="alert-danger"></span>
-			</div>
-			<div class="form-group col-md-6 mt-3 mb-3">
-				<label>
-					@Html.CheckBox("IsActive", Model.IsFeatured)
-					Hiển thị
-				</label>
-			</div>
-			<div class="form-group col-md-6 mt-3 mb-3">
-				<label>
-					@Html.CheckBox("IsFeatured", Model.IsFeatured)
-					Nổi bật
-				</label>
-			</div>
-			<input type="text" class="form-control mb-3" asp-for="IsFeatured" type="hidden" />
 
-			<div class="form-group d-none">
-				<input asp-for="CreatedDate" class="form-control" value="@Functions.getCurrentDate()" />
-			</div>
-			<div class="form-group d-none">
-				<input asp-for="PostOrder" class="form-control" value="1" />
-			</div>
-			<div class="form-group d-none">
-				<input asp-for="ServiceID" class="form-control" value="1" />
-			</div>
-			<div class="form-group d-none">
-				<input asp-for="Status" class="form-control" value="1" />
-			</div>
-			<div class="form-group d-none">
-				<input asp-for="Link" class="form-control" value="NULL" />
-			</div>
-		</div>
+			<a class="btn btn-app bg-warning p-2 mr-5" href="javascript:history.back()">
+				<i class="bi bi-arrow-left"></i> Quay lại
+			</a>
+			<button type="submit" class="btn btn-app bg-info p-2">
+				<i class="bi bi-save"></i> Lưu
+			</button>
+		</form>
 
-		<a class="btn btn-app bg-warning p-2 mr-5" href="javascript:history.back()">
-			<i class="bi bi-arrow-left"></i> Quay lại
-		</a>
-		<button type="submit" class="btn btn-app bg-info p-2">
-			<i class="bi bi-save"></i> Lưu
-		</button>
-	</form>
-</main>
+	</main>
+</div>
 
 @{
 	var summerNote = new ProjectTravel.Areas.Admin.Models.SummerNote("#Contents");

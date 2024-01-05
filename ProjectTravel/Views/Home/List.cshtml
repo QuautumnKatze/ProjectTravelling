@@ -28,44 +28,36 @@
 	</div>
 </div>
 
-	<div class="section">
-		<div class="container">
+<div class="ftco-section">
+	<div class="container">
 
-
-			<div class="row align-items-stretch">
-					@foreach(var item in Model)
-				{
+		<div class="row d-flex align-items-stretch">
+			@foreach (var item in Model)
+			{
 				string url = Functions.TitleSlugGeneration("post", item.Title, item.PostID);
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-					<div class="media-entry">
-						<a href="/@url">
-							<img src="@item.Images" alt="Image" class="img-fluid">
+				<div class="col-md-4 d-flex ftco-animate">
+					<div class="blog-entry justify-content-end">
+						<a href="blog-single.html" class="block-20" style="background-image: url('@item.Images');">
 						</a>
-						<div class="bg-white m-body">
-							<span class="date">@item.CreatedDate.ToString("dd-MM-yyyy")</span>
-							<h3><a href="/@url">@item.Title</a></h3>
-							<p>@item.Abstract</p>
-
-							<a href="/@url" class="more d-flex align-items-center float-start">
-								<span class="label">Đọc thêm</span>
-								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-							</a>
+						<div class="text">
+							<div class="d-flex align-items-center mb-4 topp">
+								<div class="one">
+									<span class="day">@item.CreatedDate.Day.ToString()</span>
+								</div>
+								<div class="two">
+									<span class="mos">@Functions.ConvertToVietnameseMonth(item.CreatedDate.Month)</span>
+									<span class="yr">@item.CreatedDate.Year.ToString()</span>
+								</div>
+							</div>
+							<h3 class="heading title"><a href="@url">@item.Title</a></h3>
+							<p class="short-desc">@item.Abstract</p>
+							<p><a href="@url" class="btn btn-primary">Đọc thêm</a></p>
 						</div>
 					</div>
 				</div>
-				}
+			}
 
-
-
-				<nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
-					<ul class="custom-pagination pagination">
-						<li class="page-item prev"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item next"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				</nav>
-			</div>
 		</div>
 	</div>
+</div>
+

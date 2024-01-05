@@ -35,5 +35,7 @@ namespace ProjectTravel.Models
 
         public DbSet<Location> Locations { get; set; }
 
-    }
+	}
+
+
 }

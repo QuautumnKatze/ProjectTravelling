@@ -23,36 +23,30 @@
 	}
 </style>
 
-<div class="section">
+<div class="ftco-section">
 	<div class="container">
 
-		<div class="row">
-			<div class="col-12" data-aos="fade-up" data-aos-delay="0">
-
-				<h2 class="heading mb-5">Bài đăng nổi bật</h2>
-			</div>
-		</div>
-
-		<div class="row align-items-stretch">
+		<div class="row d-flex align-items-stretch">
 			@foreach (var item in Model)
 			{
 				string url = Functions.TitleSlugGeneration("post", item.Title, item.PostID);
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-					<div class="media-entry">
-						<a class="blog-img position-relative overflow-hidden" href="/@url">
-							<img src="@item.Images" alt="Image" class="img-fluid">
+				<div class="col-md-4 d-flex ftco-animate">
+					<div class="blog-entry justify-content-end">
+						<a href="blog-single.html" class="block-20" style="background-image: url('@item.Images');">
 						</a>
-						<div class="bg-white m-body">
-							<span class="date">@item.CreatedDate</span>
-							<h3 class="title">
-								<a href="/@url">@item.Title</a>
-							</h3>
+						<div class="text">
+							<div class="d-flex align-items-center mb-4 topp">
+								<div class="one">
+									<span class="day">@item.CreatedDate.Day.ToString()</span>
+								</div>
+								<div class="two">
+									<span class="mos">@Functions.ConvertToVietnameseMonth(item.CreatedDate.Month)</span>
+									<span class="yr">@item.CreatedDate.Year.ToString()</span>
+								</div>
+							</div>
+							<h3 class="heading title"><a href="@url">@item.Title</a></h3>
 							<p class="short-desc">@item.Abstract</p>
-
-							<a href="/@url" class="more d-flex align-items-center float-start">
-								<span class="label">Đọc thêm</span>
-								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-							</a>
+							<p><a href="@url" class="btn btn-primary">Đọc thêm</a></p>
 						</div>
 					</div>
 				</div>

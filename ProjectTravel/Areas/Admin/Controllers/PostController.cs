@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ProjectTravel.Models;
 using ProjectTravel.Ultilities;
 
@@ -15,14 +16,27 @@ namespace ProjectTravel.Areas.Admin.Controllers
 			_context = context;
 		}
 
-		public IActionResult Index()
-		{
-            //kiểm tra đăng nhập
-            if (!Functions.IsLogin())
-                return LocalRedirect("/Admin/Login/Index");
+		//public IActionResult Index()
+		//{
+  //          //kiểm tra đăng nhập
+  //          if (!Functions.IsLogin())
+  //              return LocalRedirect("/Admin/Login/Index");
 
-            var listofPost = _context.Posts.OrderBy(m => m.PostID).ToList();
-			return View(listofPost);
+  //          var listofPost = _context.Posts.OrderBy(m => m.PostID).ToList();
+		//	return View(listofPost);
+		//}
+
+		public async Task<IActionResult> Index(string searchString)
+		{
+			var listpost = from m in _context.Posts
+						 select m;
+
+			if (!String.IsNullOrEmpty(searchString))
+			{
+				listpost = listpost.Where(s => s.Title!.Contains(searchString));
+			}
+
+			return View(await listpost.ToListAsync());
 		}
 
 		public IActionResult Delete(long? id)

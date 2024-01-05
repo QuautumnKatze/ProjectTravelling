@@ -84,14 +84,15 @@
 		<div class="row">
 			@foreach (var item in Model)
 			{
+				string url = Functions.TitleSlugGeneration("dulich", item.tour.TourName, item.tour.TourID);
 				<div class="col-md-4 ftco-animate">
 					<div class="project-wrap">
-						<a href="#" class="img" style="background-image: url(@item.tour.Images);">
+						<a href="@url" class="img" style="background-image: url(@item.tour.Images);">
 							<span class="price">@item.tour.Promotion</span>
 						</a>
 						<div class="text p-4">
 							<span class="days">@item.tour.Duration</span>
-							<h5><a href="#">@item.tour.TourName</a></h5>
+							<h5><a href="@url">@item.tour.TourName</a></h5>
 							<p class="location"><span class="fa fa-map-marker"> @item.locate.LocationName</span> </p>
 							@if(@item.tour.PriceSale == null)
 							{

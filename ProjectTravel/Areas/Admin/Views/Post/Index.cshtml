@@ -26,7 +26,14 @@
                     <div class="col-12">
 
                         <div class="card">
-                            <div class="card-header"></div>
+                            <div class="card-header">
+                                <form asp-area="Admin" asp-controller="Post" asp-action="Index">
+                                    <p>
+                                        Tiêu đề: <input type="text" name="SearchString" />
+                                        <input type="submit" value="Filter" />
+                                    </p>
+                                </form>
+                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table class="table table-bordered table-hover">

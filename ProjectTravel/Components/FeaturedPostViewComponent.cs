@@ -17,7 +17,7 @@ namespace ProjectTravel.Components
 			var listofPost = (from p in _context.Posts
 							  where (p.IsActive == true) && (p.Status == 1) && (p.IsFeatured == true)
 							  orderby p.PostID descending
-							  select p).Take(8).ToList();
+							  select p).Take(6).ToList();
 
 			return await Task.FromResult((IViewComponentResult)View("Default", listofPost));
 		}

@@ -1,0 +1,20 @@
+﻿@model ProjectTravel.Models.Tour
+
+@{
+	ViewData["Title"] = "Tour Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	// List<PostComment> postComment = ViewBag.postComment;
+}
+
+<div class="hero overlay">
+	<div class="img-bg rellax">
+		<img src="@Model.Images" alt="Image" class="img-fluid" width="100%">
+	</div>
+	<div class="container">
+		<div class="row align-items-center justify-content-start">
+			<div class="col-lg-6 mx-auto text-center">
+				<h1 class="heading" data-aos="fade-up">@Html.DisplayFor(m => m.TourName)</h1>
+			</div>
+		</div>
+	</div>
+</div>

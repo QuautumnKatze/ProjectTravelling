@@ -1,4 +1,6 @@
-﻿<!-- /*
+﻿@using ProjectTravel.Ultilities;
+
+<!-- /*
 * Template Name: Sterial
 * Template Author: Untree.co
 * Tempalte URI: https://untree.co/
@@ -66,13 +68,23 @@
 
 	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
 </head>
-<body>
 
-	<div class="bg-black px-5"> 
-		<a href="https://localhost:7036/Admin/Home/Index" class="text reset">Admin</a>
+<header>
+	<div class="row bg-black px-5">
+		<div class="col-1">
+			<a href="https://localhost:7036/Admin/Home/Index" class="text reset">Admin</a>
+		</div>
+		<div class="col-4">
+			@Functions.ConvertToVietnameseDayOfWeek(DateTime.Now.DayOfWeek),
+			@DateTime.Now.Day.ToString(),
+			@Functions.ConvertToVietnameseMonth(DateTime.Now.Month),
+			@DateTime.Now.Year.ToString()
+		</div>
+		
 	</div>
-	
+</header>
 
+<body>
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
 			<div class="site-mobile-menu-close">
